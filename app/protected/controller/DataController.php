@@ -41,7 +41,7 @@ class DataController extends DooController{
 		}
 
 		//query mysql
-		$sql = "SELECT teams.name, teams.color, avg(week1) AS wk1, avg(week2) AS wk2, avg(week3) AS wk3, avg(week4) AS wk4, avg(week5) AS wk5, avg(week6) AS wk6, avg(week7) AS wk7, avg(week8) AS wk8, avg(week9) AS wk9, avg(week10) AS wk10, avg(week11) AS wk11, avg(week12) AS wk12, avg(week13) AS wk13, avg(week14) AS wk14, avg(week15) AS wk15, avg(week16) AS wk16 
+		$sql = "SELECT teams.name, teams.color, avg(week1)* -1 AS wk1, avg(week2)* -1  AS wk2, avg(week3)* -1  AS wk3, avg(week4)* -1 AS wk4, avg(week5)* -1 AS wk5, avg(week6)* -1  AS wk6, avg(week7)* -1  AS wk7, avg(week8)* -1  AS wk8, avg(week9)* -1  AS wk9, avg(week10)* -1  AS wk10, avg(week11)* -1 AS wk11, avg(week12) AS wk12, avg(week13) AS wk13, avg(week14) AS wk14, avg(week15) AS wk15, avg(week16) AS wk16 
 			FROM rankings
 			LEFT JOIN teams
 				ON rankings.team_id = teams.id
@@ -52,12 +52,11 @@ class DataController extends DooController{
 			GROUP BY teams.name
 			ORDER BY teams.name";
 
-
 		//get return data
 		$data = Doo::db()->fetchAll($sql);
 
 		//build results array to be returned as json 
-		$result = array();
+		$results = array();
 		foreach($data as $row){
 			$tmp = array();
 			$tmp['name'] = $row['name'];

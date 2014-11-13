@@ -21,7 +21,7 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -33,9 +33,18 @@
           <a class="navbar-brand" href="#">RankNFL.com</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+          <ul id="conf-nav" class="nav navbar-nav">
+            <li class="active"><a href="#">AFC</a></li>
+            <li class="active"><a href="#">NFC</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav">
+          
+          </ul>
+          <ul id="div-nav" class="nav navbar-nav navbar-right">  
+            <li class="active"><a href="#">North</a></li>
+            <li class="active"><a href="#">East</a></li>
+            <li class="active"><a href="#">South</a></li>
+            <li class="active"><a href="#">West</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -44,17 +53,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <div class="btn-group btn-group-lg conf-btn-group">
-            <button type="button" class="btn btn-default active">AFC</button>
-            <button type="button" class="btn btn-default">NFC</button>
-          </div>
-          <div class="btn-group div-btn-group">
-            <button type="button " class="btn btn-default active">North</button>
-            <button type="button" class="btn btn-default">East</button>
-            <button type="button" class="btn btn-default">South</button>
-            <button type="button" class="btn btn-default">West</button>
-          </div>
+        <div class="sidebar">
           <ul id="sources" class="nav nav-sidebar">
             <?php
               //build source menu
@@ -64,7 +63,7 @@
             ?>
           </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="main">
           <h1 class="page-header">NFL Power Ranking Trend</h1>
           <div id="chart" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
         </div> 
@@ -85,7 +84,6 @@
     <!-- App Js-->
     <script src="global/js/index.js"></script>
 
-    <!-- Google Analytics -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

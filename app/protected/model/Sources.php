@@ -1,7 +1,12 @@
 <?php
-Doo::loadCore('db/DooModel');
+Doo::loadCore('db/DooSmartModel');
 
-class Sources extends DooModel{
+class Sources extends DooSmartModel{
+    
+    function __construct(){    
+         parent::setupModel(__CLASS__, 'memcache');
+    }
+
 
     /**
      * @var int Max length is 11.

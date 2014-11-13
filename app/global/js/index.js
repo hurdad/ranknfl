@@ -6,6 +6,7 @@ $(function () {
             type: 'spline',
             animation: false
         },
+      
         title: {
             text: ''
         },
@@ -16,8 +17,8 @@ $(function () {
             title: {
                 text: 'Rank Index'
             },
-            max : 32,
-            min : 0,
+            max : 0,
+            min : -32,
             tickInterval: 2,
             minorTickInterval: 1,
             minorTickLength: 0,
@@ -25,11 +26,31 @@ $(function () {
                 value: 0,
                 width: 1,
                 color: '#808080'
-            }]
+            }],
+            labels:{
+               formatter: function () {
+                    return this.value.toString().substring(1,5);//strip off leading -1
+                }
+            }
         },
         tooltip: {
             shared: true,
-            crosshairs: true
+            crosshairs: true,
+            formatter: function () {
+                
+                //sort inversely by rank (y) value
+                this.points.sort(function(a,b) { return parseFloat(b.y) - parseFloat(a.y) } );
+               
+                //header
+                var s ='<span style="font-size: 10px"><b>' + this.x + '</b></span><br/>';
+
+                //loop
+                $.each(this.points, function () {
+                    s += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ' <b>' + this.y.toString().substring(1,5) + '</b><br/>'     
+                });
+                
+                return s;
+            },
         },
         legend: {
             layout: 'vertical',
@@ -51,8 +72,8 @@ $(function () {
         load();
     });
 
-    //division button
-    $(".div-btn-group button").click(function(e){
+    // division button
+    $("#div-nav li").click(function(e){
         
         //toggle active
         $(this).hasClass("active") ? $(this).removeClass("active") : $(this).addClass("active");
@@ -62,7 +83,7 @@ $(function () {
     });
 
     //conference button
-    $(".conf-btn-group button").click(function(e){
+    $("#conf-nav li").click(function(e){
  
         //toggle active
         $(this).hasClass("active") ? $(this).removeClass("active") : $(this).addClass("active");
@@ -87,7 +108,7 @@ $(function () {
             confs: JSON.stringify(getConferences())
         }).done(function( data ) {
             $.each(data, function( key, val ) {
-                console.log(val);
+              
                 chart.addSeries(val);//add to chart
             });
         });
@@ -116,8 +137,8 @@ $(function () {
         var confs = [];
 
         //loop sources menue
-        $(".conf-btn-group button").each(function( index ) {
-            console.log(this);
+        $("#conf-nav li").each(function( index ) {
+
             if($(this).hasClass('active'))
                 confs.push($(this).text());
         });  
@@ -133,8 +154,8 @@ $(function () {
         var divs = [];
 
         //loop sources menue
-        $(".div-btn-group button").each(function( index ) {
-            console.log($(this).text());
+        $("#div-nav li").each(function( index ) {
+           
             if($(this).hasClass('active'))
                 divs.push($(this).text());
         });  

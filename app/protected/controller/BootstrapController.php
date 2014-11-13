@@ -8,7 +8,9 @@ class BootstrapController extends DooController{
 		$data = array();
 
 		//get soruces
-		$data['sources'] = Doo::db()->find('Sources');
+		Doo::loadModel('Sources');
+		$sources = new Sources();
+		$data['sources'] = $sources->find();
 
 		//render
 		$this->renderc('index', $data);

@@ -15,7 +15,7 @@ error_reporting(E_ALL | E_STRICT);
 
 //For framework use. Must be defined. Use full absolute paths and end them with '/'      eg. /var/www/project/
 $config['SITE_PATH'] = realpath('..').'/app/';
-//$config['PROTECTED_FOLDER'] = 'protected/';
+$config['PROTECTED_PATH'] = 'protected/';
 $config['BASE_PATH'] = '/usr/share/doophp/dooframework/';
 
 //for production mode use 'prod'
@@ -31,7 +31,7 @@ if(strpos($config['SUBFOLDER'], '/')!==0){
 
 $config['APP_URL'] = 'http://'.$_SERVER['HTTP_HOST'].$config['SUBFOLDER'];
 //$config['AUTOROUTE'] = TRUE;
-$config['DEBUG_ENABLED'] = TRUE;
+//$config['DEBUG_ENABLED'] = TRUE;
 
 //$config['TEMPLATE_COMPILE_ALWAYS'] = TRUE;
 
