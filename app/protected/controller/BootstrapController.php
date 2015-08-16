@@ -10,7 +10,7 @@ class BootstrapController extends DooController{
 		//get soruces
 		Doo::loadModel('Sources');
 		$sources = new Sources();
-		$data['sources'] = $sources->find();
+		$data['sources'] = $sources->find(array('where'=>'active = 1'));
 
 		//render
 		$this->renderc('index', $data);

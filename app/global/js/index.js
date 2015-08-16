@@ -11,11 +11,11 @@ $(function () {
             text: ''
         },
         xAxis: {
-            categories: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7', 'Week8', 'Week9', 'Week10', 'Week11', 'Week12', 'Week13', 'Week14', 'Week15', 'Week16']
+            categories: ['Pre', 'Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7', 'Week8', 'Week9', 'Week10', 'Week11', 'Week12', 'Week13', 'Week14', 'Week15', 'Week16', 'Week17', 'Week18']
         },
         yAxis: {
             title: {
-                text: 'Rank Index'
+                text: 'Aggregate Rank Index'
             },
             max : 0,
             min : -32,
@@ -59,6 +59,19 @@ $(function () {
             borderWidth: 0
         },
         series: []
+    });
+
+    // Year Menue
+    $("#year-menu li").click(function(e){
+    
+        //get year from menu text    
+        var year = $(this).text();
+
+        //set dropdown text to new yaer
+        $("#year-dropdown").text(year);
+
+        //update chart
+        load();
     });
 
 
@@ -105,10 +118,10 @@ $(function () {
         $.getJSON("data", {
             sources: JSON.stringify(getSources()),
             divs: JSON.stringify(getDivisions()),
-            confs: JSON.stringify(getConferences())
+            confs: JSON.stringify(getConferences()),
+            year: getSelectedYear()
         }).done(function( data ) {
             $.each(data, function( key, val ) {
-              
                 chart.addSeries(val);//add to chart
             });
         });
@@ -162,6 +175,10 @@ $(function () {
 
         // return
         return divs;
+    }
+
+    function getSelectedYear(){
+        return parseInt($("#year-dropdown").text());
     }
 
     //load on start

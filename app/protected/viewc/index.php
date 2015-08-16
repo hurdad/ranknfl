@@ -33,20 +33,31 @@
           <a class="navbar-brand" href="#">RankNFL.com</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
+
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="year-dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">2015 <span class="caret"></span></a>
+              <ul id="year-menu" class="dropdown-menu">
+                <li><a href="#">2014</a></li>
+                <li><a href="#">2015</a></li>
+              </ul>
+            </li>
+          </ul>
+
           <ul id="conf-nav" class="nav navbar-nav">
             <li class="active"><a href="#">AFC</a></li>
             <li class="active"><a href="#">NFC</a></li>
           </ul>
-          <ul class="nav navbar-nav">
-          
-          </ul>
+
           <ul id="div-nav" class="nav navbar-nav navbar-right">  
             <li class="active"><a href="#">North</a></li>
             <li class="active"><a href="#">East</a></li>
             <li class="active"><a href="#">South</a></li>
             <li class="active"><a href="#">West</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+
+          </div><!--/.nav-collapse -->
+   
       </div>
     </nav>
 
@@ -58,15 +69,16 @@
             <?php
               //build source menu
               foreach($this->data['sources'] as $source){
-                echo "<li class='" . ($source->active==1 ? 'active' : '') . "' source_id='" . $source->id . "'><a href='#'>" . $source->name . "</a></li>" . PHP_EOL;
+                echo "<li class='" . ($source->selected==1 ? 'active' : '') . "' source_id='" . $source->id . "'><a href='#'>" . $source->name . "</a></li>" . PHP_EOL;
               }
             ?>
           </ul>
+          <a class="twitter-timeline" width="250" height="400" href="https://twitter.com/RankNFL" data-widget-id="533054920329420800">Tweets by @RankNFL</a>
         </div>
         <div class="main">
           <h1 class="page-header">NFL Power Ranking Trend</h1>
           <div id="chart" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
-        </div> 
+         </div> 
       </div>
     </div><!-- /.container -->
 
@@ -80,6 +92,9 @@
 
     <!-- High Charts -->
     <script src="http://code.highcharts.com/highcharts.js"></script>
+
+    <!-- Twitter Widget -->
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
     <!-- App Js-->
     <script src="global/js/index.js"></script>
